@@ -33,14 +33,13 @@ func CreateTeam(c []string) {
 	fmt.Println(model.CreateTeam(db, name))
 }
 
-// Create models
-func Create(c *cli.Context) {
-	if len(c.Args()) < 1 {
+func create(args []string) {
+	if len(args) < 1 {
 		fmt.Println("gfalcon-cli create [target] [args...]")
 		return
 	}
-	target := c.Args()[0]
-	args := c.Args()[1:]
+	target := args[0]
+	args = args[1:]
 	switch target {
 	case "service":
 		CreateService(args)
@@ -49,5 +48,9 @@ func Create(c *cli.Context) {
 	default:
 		fmt.Println("unknown command")
 	}
+}
 
+// Create models
+func Create(c *cli.Context) {
+	create(c.Args())
 }
