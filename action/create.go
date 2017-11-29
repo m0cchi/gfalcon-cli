@@ -17,8 +17,9 @@ func CreateService(c []string) {
 
 	}
 	name := c[0]
-	model.CreateService(db, name)
-	fmt.Println(model.GetService(db, name))
+
+	fmt.Println(model.CreateService(db, name))
+
 }
 
 // Create models
