@@ -54,6 +54,25 @@ func CreateUser(c []string) {
 	fmt.Println(complex.CreateUser(db, team.IID, userID, password))
 }
 
+// args[0]: serviceID
+// args[1]: actionID
+func CreateAction(c []string) {
+	if len(c) < 2 {
+		fmt.Println("gfalcon-cli create [target] [args...]")
+		return
+	}
+
+	serviceID := c[0]
+	actionID := c[1]
+	service, err := model.GetService(db, serviceID)
+	if err != nil {
+		fmt.Printf("failed to get service: %v\n", err)
+		return
+	}
+
+	fmt.Println(model.CreateAction(db, service.IID, actionID))
+}
+
 func create(args []string) {
 	if len(args) < 1 {
 		fmt.Println("gfalcon-cli create [target] [args...]")
@@ -68,6 +87,8 @@ func create(args []string) {
 		CreateTeam(args)
 	case "user":
 		CreateUser(args)
+	case "action":
+		CreateAction(args)
 	default:
 		fmt.Println("unknown command")
 	}
