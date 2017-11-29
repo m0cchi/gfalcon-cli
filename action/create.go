@@ -10,28 +10,28 @@ import (
 var CreateFlags = []cli.Flag{}
 
 // Create service of gfalcon
-// args[0]: name
+// args[0]: serviceID
 func CreateService(c []string) {
 	if len(c) < 1 {
 		fmt.Println("gfalcon-cli create [target] [args...]")
 		return
 
 	}
-	name := c[0]
+	serviceID := c[0]
 
-	fmt.Println(model.CreateService(db, name))
+	fmt.Println(model.CreateService(db, serviceID))
 
 }
 
-// args[0]: name
+// args[0]: teamID
 func CreateTeam(c []string) {
 	if len(c) < 1 {
 		fmt.Println("gfalcon-cli create [target] [args...]")
 		return
 	}
-	name := c[0]
+	teamID := c[0]
 
-	fmt.Println(model.CreateTeam(db, name))
+	fmt.Println(model.CreateTeam(db, teamID))
 }
 
 // args[0]: teamID
